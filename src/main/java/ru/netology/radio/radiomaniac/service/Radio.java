@@ -1,34 +1,62 @@
 package ru.netology.radio.radiomaniac.service;
 
 public class Radio {
-    public int station;
-    public int volume;
+    private int station;
+    private int volume;
 
     public int getVolume() {
         return volume;
     }
 
-    public int increaseVolume(int newVolume) {
-        if (newVolume < 10) {
-            return newVolume = newVolume + 1;
+    public void setVolume(int newVolume) {
+        int maxVolume = 10;
+        int minVolume = 0;
+        if (newVolume < 0) {
+            newVolume = minVolume;
         }
         if (newVolume > 10) {
-            return 10;
+            newVolume = maxVolume;
         }
-        return newVolume;
+        volume = newVolume;
     }
 
-    public int decreaseVolume(int newVolume) {
-        if (newVolume > 0) {
-            return newVolume = newVolume - 1;
-        }
-        if (newVolume < 0) {
-            return 0;
-        }
-        return newVolume;
+    public int increaseVolume() {
+        int increasedVolume = volume + 1;
+        setVolume(increasedVolume);
+        return increasedVolume;
+    }
+    
+    public int decreaseVolume() {
+        int decreasedVolume = volume - 1;
+        setVolume(decreasedVolume);
+        return decreasedVolume;
     }
 
     public int getStation() {
+        return station;
+    }
+
+    public int next() {
+        int firstStation = 1;
+        int nextStation = station + 1;
+        if (nextStation > 9) {
+            setStation(firstStation);
+        }
+        else {
+            setStation(nextStation);
+        }
+        return station;
+    }
+
+    public int prev() {
+        int lastStation = 9;
+        int prevStation = station - 1;
+        if (prevStation < 1) {
+            setStation(lastStation);
+        }
+        else {
+            setStation(prevStation);
+        }
         return station;
     }
 
@@ -36,30 +64,9 @@ public class Radio {
         if (newStation > 9) {
             return;
         }
-        if (newStation < 0) {
+        if (newStation < 1) {
             return;
         }
         station = newStation;
-    }
-    //осталисть next и прев
-
-    public int next(int nextStation) {
-        if (nextStation >= 9) {
-            nextStation = 0;
-        }
-        else {
-            nextStation = nextStation + 1;
-        }
-        return nextStation;
-    }
-
-    public int prev(int prevStation) {
-        if (prevStation <= 0) {
-            prevStation = 9;
-        }
-        else {
-            prevStation = prevStation - 1;
-        }
-        return prevStation;
     }
 }
