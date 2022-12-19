@@ -5,6 +5,14 @@ import org.junit.jupiter.api.Test;
 public class RadioTest {
 
     @Test
+    public void shouldSetMinAndMaxStation() {
+        Radio service = new Radio(5, 25);
+        Assertions.assertEquals(5, service.getMinStation());
+        Assertions.assertEquals(25, service.getMaxStation());
+        Assertions.assertEquals(5, service.getStation());
+    }
+
+    @Test
     public void shouldReturnVolume() {
         Radio service = new Radio();
 
@@ -29,15 +37,11 @@ public class RadioTest {
     }
 
     @Test
-    public void shouldReturnTenVolume() {
+    public void shouldStayMaxVolume() {
         Radio service = new Radio();
+        service.setVolume(101);
 
-        service.setVolume(11);
-
-        int expected = 10;
-        int actual = service.getVolume();
-
-        Assertions.assertEquals(expected, actual);
+        Assertions.assertEquals(service.getMaxVolume(), service.getVolume());
     }
 
     @Test
@@ -104,72 +108,47 @@ public class RadioTest {
     @Test
     public void shouldSetNextStation() {
         Radio service = new Radio();
-
         service.setStation(5);
 
-        int expected = 6;
-        int actual = service.next();
-
-        Assertions.assertEquals(expected, actual);
+        Assertions.assertEquals(6, service.next());
     }
 
     @Test
-    public void shouldReturnFirstStation() {
+    public void shouldReturnMinStation() {
         Radio service = new Radio();
+        service.setStation(service.getMaxStation());
 
-        service.setStation(9);
-
-        int expected = 1;
-        int actual = service.next();
-
-        Assertions.assertEquals(expected, actual);
+        Assertions.assertEquals(service.getMinStation(), service.next());
     }
 
     @Test
     public void shouldReturnPrevStation() {
         Radio service = new Radio();
-
         service.setStation(5);
 
-        int expected = 4;
-        int actual = service.prev();
-
-        Assertions.assertEquals(expected, actual);
+        Assertions.assertEquals(4, service.prev());
     }
 
     @Test
-    public void shouldReturnNinthStation() {
+    public void shouldReturnLastStation() {
         Radio service = new Radio();
 
-        service.setStation(1);
-
-        int expected = 9;
-        int actual = service.prev();
-
-        Assertions.assertEquals(expected, actual);
+        service.setStation(service.getMinStation());
+        Assertions.assertEquals(service.getMaxStation(), service.prev());
     }
-
     @Test
     public void shouldNotSetAboveAllowed() {
         Radio service = new Radio();
-
         service.setStation(15);
 
-        int expected = 0;
-        int actual = service.getStation();
-
-        Assertions.assertEquals(expected, actual);
+        Assertions.assertEquals(service.getMinStation(), service.getStation());
     }
 
     @Test
     public void shouldNotSetBelowAllowed() {
         Radio service = new Radio();
 
-        service.setStation(-5);
-
-        int expected = 0;
-        int actual = service.getStation();
-
-        Assertions.assertEquals(expected, actual);
+        service.setStation(-1);
+        Assertions.assertEquals(service.getMinStation(), service.getStation());
     }
 }

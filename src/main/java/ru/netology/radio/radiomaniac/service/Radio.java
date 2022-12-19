@@ -1,20 +1,46 @@
 package ru.netology.radio.radiomaniac.service;
 
 public class Radio {
-    private int station;
-    private int volume;
+    private int minStation = 0;
+    private int maxStation = 9;
+    private int station = minStation;
+    private int minVolume = 0;
+    private int maxVolume = 100;
+    private int volume = minVolume;
+    public Radio(int minStation, int maxStation) {
+        this.minStation = minStation;
+        this.maxStation = maxStation;
+        this.station = minStation;
+    }
 
+    public Radio() {
+
+    }
     public int getVolume() {
         return volume;
     }
 
+    public int getMinStation() {
+        return minStation;
+    }
+
+    public int getMaxStation() {
+        return maxStation;
+    }
+
+    public int getMinVolume() {
+        return minVolume;
+    }
+
+    public int getMaxVolume() {
+        return maxVolume;
+    }
+
     public void setVolume(int newVolume) {
-        int maxVolume = 10;
-        int minVolume = 0;
-        if (newVolume < 0) {
+        if (newVolume < minVolume) {
             newVolume = minVolume;
         }
-        if (newVolume > 10) {
+        if (newVolume > maxVolume) {
             newVolume = maxVolume;
         }
         volume = newVolume;
@@ -37,10 +63,9 @@ public class Radio {
     }
 
     public int next() {
-        int firstStation = 1;
         int nextStation = station + 1;
-        if (nextStation > 9) {
-            setStation(firstStation);
+        if (nextStation > maxStation) {
+            setStation(minStation);
         }
         else {
             setStation(nextStation);
@@ -49,10 +74,9 @@ public class Radio {
     }
 
     public int prev() {
-        int lastStation = 9;
         int prevStation = station - 1;
-        if (prevStation < 1) {
-            setStation(lastStation);
+        if (prevStation < minStation) {
+            setStation(maxStation);
         }
         else {
             setStation(prevStation);
@@ -61,10 +85,10 @@ public class Radio {
     }
 
     public void setStation(int newStation) {
-        if (newStation > 9) {
+        if (newStation > maxStation) {
             return;
         }
-        if (newStation < 1) {
+        if (newStation < minStation) {
             return;
         }
         station = newStation;
