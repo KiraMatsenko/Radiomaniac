@@ -5,11 +5,10 @@ import org.junit.jupiter.api.Test;
 public class RadioTest {
 
     @Test
-    public void shouldSetMinAndMaxStation() {
-        Radio service = new Radio(5, 25);
-        Assertions.assertEquals(5, service.getMinStation());
+    public void shouldSetMaxStation() {
+        Radio service = new Radio(25);
         Assertions.assertEquals(25, service.getMaxStation());
-        Assertions.assertEquals(5, service.getStation());
+        Assertions.assertEquals(0, service.getStation());
     }
 
     @Test
@@ -118,7 +117,7 @@ public class RadioTest {
         Radio service = new Radio();
         service.setStation(service.getMaxStation());
 
-        Assertions.assertEquals(service.getMinStation(), service.next());
+        Assertions.assertEquals(0, service.next());
     }
 
     @Test
@@ -133,7 +132,7 @@ public class RadioTest {
     public void shouldReturnLastStation() {
         Radio service = new Radio();
 
-        service.setStation(service.getMinStation());
+        service.setStation(0);
         Assertions.assertEquals(service.getMaxStation(), service.prev());
     }
     @Test
@@ -141,7 +140,7 @@ public class RadioTest {
         Radio service = new Radio();
         service.setStation(15);
 
-        Assertions.assertEquals(service.getMinStation(), service.getStation());
+        Assertions.assertEquals(0, service.getStation());
     }
 
     @Test
@@ -149,6 +148,6 @@ public class RadioTest {
         Radio service = new Radio();
 
         service.setStation(-1);
-        Assertions.assertEquals(service.getMinStation(), service.getStation());
+        Assertions.assertEquals(0, service.getStation());
     }
 }
