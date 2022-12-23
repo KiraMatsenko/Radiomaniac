@@ -37,7 +37,7 @@ public class Radio {
     }
 
     public int next() {
-        int firstStation = 1;
+        int firstStation = 0;
         int nextStation = station + 1;
         if (nextStation > 9) {
             setStation(firstStation);
@@ -64,7 +64,7 @@ public class Radio {
         if (newStation > 9) {
             return;
         }
-        if (newStation < 1) {
+        if (newStation < 0) {
             return;
         }
         station = newStation;

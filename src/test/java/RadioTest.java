@@ -119,7 +119,7 @@ public class RadioTest {
 
         service.setStation(9);
 
-        int expected = 1;
+        int expected = 0;
         int actual = service.next();
 
         Assertions.assertEquals(expected, actual);
