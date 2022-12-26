@@ -7,8 +7,7 @@ public class RadioTest {
     @Test
     public void shouldSetMaxStation() {
         Radio service = new Radio(25);
-        Assertions.assertEquals(25, service.getMaxStation());
-        Assertions.assertEquals(0, service.getStation());
+        Assertions.assertEquals(24, service.getMaxStation());
     }
 
     @Test
