@@ -1,15 +1,12 @@
 package ru.netology.radio.radiomaniac.service;
 
 public class Radio {
+
     private int maxStation = 9;
     private int station;
     private int minVolume = 0;
     private int maxVolume = 100;
     private int volume = minVolume;
-
-    public Radio(int maxStation) {
-        this.maxStation = maxStation;
-    }
 
     public Radio() {
     }
@@ -22,16 +19,22 @@ public class Radio {
         return station;
     }
 
-    public int getMinVolume() {
-        return minVolume;
-    }
-
-    public int getMaxVolume() {
-        return maxVolume;
-    }
-
     public int getVolume() {
         return volume;
+    }
+
+    public Radio(int quantityOfStations) {
+        this.maxStation = quantityOfStations - 1;
+    }
+
+    public void setStation(int newStation) {
+        if (newStation > maxStation) {
+            return;
+        }
+        if (newStation < 0) {
+            return;
+        }
+        station = newStation;
     }
 
     public void setVolume(int newVolume) {
@@ -43,6 +46,7 @@ public class Radio {
         }
         volume = newVolume;
     }
+
     public int increaseVolume() {
         int increasedVolume = volume + 1;
         setVolume(increasedVolume);
@@ -54,6 +58,7 @@ public class Radio {
         setVolume(decreasedVolume);
         return decreasedVolume;
     }
+
     public int next() {
         int nextStation = station + 1;
         if (nextStation > maxStation) {
@@ -74,15 +79,5 @@ public class Radio {
             setStation(prevStation);
         }
         return station;
-    }
-
-    public void setStation(int newStation) {
-        if (newStation > maxStation) {
-            return;
-        }
-        if (newStation < 0) {
-            return;
-        }
-        station = newStation;
     }
 }
