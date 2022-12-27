@@ -11,7 +11,7 @@ public class Radio {
         maxStation = 9;
     }
     public Radio(int quantityOfStations) {
-        maxStation = quantityOfStations -1;
+        maxStation = quantityOfStations - 1;
     }
 
 
@@ -21,14 +21,6 @@ public class Radio {
 
     public int getMaxStation() {
         return maxStation;
-    }
-
-    public int getMinVolume() {
-        return minVolume;
-    }
-
-    public int getMaxVolume() {
-        return maxVolume;
     }
 
     public void setVolume(int newVolume) {

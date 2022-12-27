@@ -39,7 +39,7 @@ public class RadioTest {
         Radio service = new Radio();
         service.setVolume(101);
 
-        Assertions.assertEquals(service.getMaxVolume(), service.getVolume());
+        Assertions.assertEquals(100, service.getVolume());
     }
 
     @Test
